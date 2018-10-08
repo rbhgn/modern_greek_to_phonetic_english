@@ -1,5 +1,5 @@
 
-const greekAlphabet = 
+export const greekAlphabet = 
 [
   {chars: ['α']                , default: 'a' },
   {chars: ['β']                , default: 'v' },
