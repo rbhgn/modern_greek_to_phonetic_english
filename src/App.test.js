@@ -1,14 +1,5 @@
 import { greekAlphabet } from './greekAlphabet'
-import { getAlphabetChars, getAlphabetDigraphs, combineDigraphs, translateInput, getCharConditions} from './translator'
-
-
-
-test('getAlphabetCharacters', () =>{
-  const value = getAlphabetChars(greekAlphabet)
-  expect(value.length).toBe(31)
-  expect(value.includes('γ')).toBe(true)
-  expect(value.includes('a')).toBe(false)
-})
+import { getAlphabetDigraphs, combineDigraphs, translateInput, getCharConditions} from './translator'
 
 test('getAlphabetDigraphs', () =>{
   const value = getAlphabetDigraphs(greekAlphabet)
@@ -18,12 +9,11 @@ test('getAlphabetDigraphs', () =>{
 })
 
 test('getCombineDigraphs', () =>{
-  console.log(combineDigraphs('γγγ', greekAlphabet))
   expect(combineDigraphs('', greekAlphabet)).toMatchObject([])
   expect(combineDigraphs('αβ', greekAlphabet)).toMatchObject(['α', 'β'])
   expect(combineDigraphs('αμπχ', greekAlphabet)).toMatchObject(['α', 'μπ', 'χ'])
   expect(combineDigraphs('αυευ', greekAlphabet)).toMatchObject(['αυ', 'ευ'])
-  // expect(combineDigraphs('γγγ', greekAlphabet)).toBe(['γγ', 'γ'])
+  expect(combineDigraphs('γγγ', greekAlphabet)).toMatchObject(['γγ', 'γ'])
 })
 
 
