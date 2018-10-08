@@ -24,7 +24,7 @@ export const combineDigraphs = (input, alphabet) => {
 export const translateInput = (input, alphabet) => {
 
   const combinedDigraphs = combineDigraphs(input, alphabet)
-  const result = combinedDigraphs.map((inputChar, index) => {
+  const result = combinedDigraphs.map((inputChar, index, arr) => {
       const alphabetObject = getCharConditions(inputChar, alphabet)
       // not a greek character
       if (!alphabetObject) return inputChar
@@ -32,7 +32,6 @@ export const translateInput = (input, alphabet) => {
       // check if end of word
       if (
         alphabetObject.endOfWord && 
-        // index < combinedDigraphs.length && 
         getCharConditions(combinedDigraphs[index + 1], alphabet) === false
        ) {
         return alphabetObject.endOfWord.char
@@ -46,13 +45,6 @@ export const translateInput = (input, alphabet) => {
         return alphabetObject.startOfWord.char
       }
 
-      // if (
-      //   alphabetObject.beforeVowel && 
-
-      // ) {
-
-      // }
-      // else...
       return alphabetObject.default.char
       })
     .join('')
