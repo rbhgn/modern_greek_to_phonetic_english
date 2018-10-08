@@ -37,4 +37,8 @@ test('translateInput', () =>{
   expect(translateInput('οω', greekAlphabet)).toBe('oo')
   expect(translateInput('γχ', greekAlphabet)).toBe('gch')
   expect(translateInput('@', greekAlphabet)).toBe('@')
+  expect(translateInput('ε', greekAlphabet)).toBe('ay')
+  expect(translateInput('ε@', greekAlphabet)).toBe('ay@')
+  expect(translateInput('ε @', greekAlphabet)).toBe('ay @')
+  expect(translateInput('εα', greekAlphabet)).toBe('ea')
 })

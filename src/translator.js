@@ -23,12 +23,25 @@ export const combineDigraphs = (input, alphabet) => {
 
 export const translateInput = (input, alphabet) => {
   const combinedDigraphs = combineDigraphs(input, alphabet)
-  const result = combinedDigraphs.map(inputChar => {
-      const alphabetObject = alphabet.filter(alphabetChar => alphabetChar.chars.includes(inputChar))
-      if (alphabetObject.length === 0) return inputChar
-      return alphabetObject[0].default
+  const result = combinedDigraphs.map((inputChar, index) => {
+      const alphabetObject = getCharConditions(inputChar, alphabet)
+      // not a greek character
+      if (!alphabetObject) return inputChar
+
+      // check if end of word
+      if (alphabetObject.endOfWord && 
+        index < combinedDigraphs.length && 
+        getCharConditions(combinedDigraphs[index + 1], alphabet) === false) return alphabetObject.endOfWord
+
+        
+      return alphabetObject.default
       })
     .join('')
-  console.log(result)
   return result
+}
+
+const getCharConditions = (char, alphabet) => {
+  const alphabetObject = alphabet.filter(alphabetChar => alphabetChar.chars.includes(char))[0]
+  if (!alphabetObject) return false
+  return alphabetObject
 }
