@@ -41,6 +41,14 @@ test('translateInput', () => {
   expect(translateInput('ντ',  greekAlphabet)).toBe('d')
   expect(translateInput('μπμπ',greekAlphabet)).toBe('bmb')
   expect(translateInput('!μπ' ,greekAlphabet)).toBe('!b')
+  expect(translateInput('αυξ' ,greekAlphabet)).toBe('afx')
+  expect(translateInput('αυβ' ,greekAlphabet)).toBe('avv')
+  expect(translateInput('αυα' ,greekAlphabet)).toBe('ava')
+  expect(translateInput('αυαυ',greekAlphabet)).toBe('avaf')
+  expect(translateInput('αυ'  ,greekAlphabet)).toBe('af')
+  expect(translateInput('γα'  ,greekAlphabet)).toBe('ga')
+  expect(translateInput('γ'   ,greekAlphabet)).toBe('g')
+  expect(translateInput('γη'   ,greekAlphabet)).toBe('yee')
 })
 
 test('getCharConditions', () => {

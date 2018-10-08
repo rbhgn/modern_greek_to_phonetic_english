@@ -1,7 +1,3 @@
-import { greekAlphabet } from './greekAlphabet'
-
-
-
 export const getAlphabetChars = (alphabet) => {
   return alphabet.map(a => a.chars).reduce((a, b) => a.concat(b))
 }
@@ -19,6 +15,12 @@ export const combineDigraphs = (input, alphabet) => {
     return c
   }).filter(c => c !== false)
   return result
+}
+
+export const getCharConditions = (char, alphabet) => {
+  const alphabetObject = alphabet.filter(alphabetChar => alphabetChar.chars.includes(char))[0]
+  if (!alphabetObject) return false
+  return alphabetObject
 }
 
 export const translateInput = (input, alphabet) => {
@@ -45,14 +47,28 @@ export const translateInput = (input, alphabet) => {
         return alphabetObject.startOfWord.char
       }
 
+      // check if next char is vowel
+      if (
+        alphabetObject.beforeVowel && 
+        getCharConditions(combinedDigraphs[index + 1], alphabet) &&
+        getCharConditions(combinedDigraphs[index + 1], alphabet).default.vowel
+       ) {
+        return alphabetObject.beforeVowel.char
+      }
+
+      // check if next char is an 'E' or 'I' sound
+      if (
+        alphabetObject.beforeEI && 
+        getCharConditions(combinedDigraphs[index + 1], alphabet) &&
+        getCharConditions(combinedDigraphs[index + 1], alphabet).EI
+        ) {
+        return alphabetObject.beforeEI.char
+      }
+
+      // Else default
       return alphabetObject.default.char
       })
     .join('')
   return result
 }
 
-export const getCharConditions = (char, alphabet) => {
-  const alphabetObject = alphabet.filter(alphabetChar => alphabetChar.chars.includes(char))[0]
-  if (!alphabetObject) return false
-  return alphabetObject
-}
