@@ -1,5 +1,4 @@
 import { greekAlphabet } from './greekAlphabet'
-import { vowelsAndVoicedConsonants } from './vowels'
 
 
 
@@ -36,7 +35,7 @@ export const translateInput = (input, alphabet) => {
         // index < combinedDigraphs.length && 
         getCharConditions(combinedDigraphs[index + 1], alphabet) === false
        ) {
-        return alphabetObject.endOfWord
+        return alphabetObject.endOfWord.char
       }
 
       // check if start of word
@@ -44,7 +43,7 @@ export const translateInput = (input, alphabet) => {
         alphabetObject.startOfWord && 
         getCharConditions(combinedDigraphs[index - 1], alphabet) === false
        ) {
-        return alphabetObject.startOfWord
+        return alphabetObject.startOfWord.char
       }
 
       // if (
@@ -54,7 +53,7 @@ export const translateInput = (input, alphabet) => {
 
       // }
       // else...
-      return alphabetObject.default
+      return alphabetObject.default.char
       })
     .join('')
   return result
@@ -64,8 +63,4 @@ export const getCharConditions = (char, alphabet) => {
   const alphabetObject = alphabet.filter(alphabetChar => alphabetChar.chars.includes(char))[0]
   if (!alphabetObject) return false
   return alphabetObject
-}
-
-export const checkIfVowelOrVoicedConsonant = (char, vowelsAndVoicedConsonants) => {
-  return false
 }

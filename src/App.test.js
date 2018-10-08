@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { greekAlphabet } from './greekAlphabet'
-import { getAlphabetChars, getAlphabetDigraphs, combineDigraphs, translateInput, getCharConditions, checkIfVowelOrVoicedConsonant} from './translator'
-import { vowelsAndVoicedConsonants } from './vowels'
+import { getAlphabetChars, getAlphabetDigraphs, combineDigraphs, translateInput, getCharConditions} from './translator'
 
 
 
@@ -51,12 +50,5 @@ test('getCharConditions', () => {
   expect(getCharConditions('', greekAlphabet)).toBe(false)
   expect(getCharConditions('a', greekAlphabet)).toBe(false)
   expect(typeof getCharConditions('α', greekAlphabet)).toBe('object')
-  expect(getCharConditions('α', greekAlphabet).default).toBe('a')
+  expect(getCharConditions('α', greekAlphabet).default.char).toBe('a')
 })
-
-// test('checkIfVowelOrVoicedConsonant', () => {
-//   expect(checkIfVowelOrVoicedConsonant('', vowelsAndVoicedConsonants)).toBe(false)
-//   expect(checkIfVowelOrVoicedConsonant('!', vowelsAndVoicedConsonants)).toBe(false)
-//   expect(checkIfVowelOrVoicedConsonant('a', vowelsAndVoicedConsonants)).toBe(false)
-//   expect(checkIfVowelOrVoicedConsonant('α', vowelsAndVoicedConsonants)).toBe(true)
-// })
