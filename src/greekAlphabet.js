@@ -25,17 +25,3 @@ export const greekAlphabet =
   {chars: ['χ']                , default: {char: 'ch', vowel: false}},
   {chars: ['ρ']                , default: {char: 'r' , vowel: true }}
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -18,10 +18,12 @@ class App extends Component {
 
   render() {
     return (
-     this.state &&  <div className="App">
-        <div className="header"></div>
+     <div className="App">
+        <div className="header">
+          <h1>Modern Greek to Phonetic English</h1>
+        </div>
         <div className="input">
-        <textarea rows="4" cols="50" value={ this.state.input } onChange={ this.handleChange }>
+        <textarea rows="10" cols="150" value={ this.state.input } onChange={ this.handleChange }>
         </textarea>
         </div>
         <div className="output">
