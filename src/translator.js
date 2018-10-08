@@ -17,7 +17,7 @@ export const combineDigraphs = (input, alphabet) => {
     if (i > 0 && digraphs.includes(a[i - 1] + c)) return false
     if (i < a.length - 1 && digraphs.includes(c + a[i + 1])) return c + a[i + 1]
     return c
-  })
+  }).filter(c => c !== false)
   return result
 }
 
@@ -29,18 +29,30 @@ export const translateInput = (input, alphabet) => {
       if (!alphabetObject) return inputChar
 
       // check if end of word
-      if (alphabetObject.endOfWord && 
-        index < combinedDigraphs.length && 
-        getCharConditions(combinedDigraphs[index + 1], alphabet) === false) return alphabetObject.endOfWord
+      if (
+        alphabetObject.endOfWord && 
+        // index < combinedDigraphs.length && 
+        getCharConditions(combinedDigraphs[index + 1], alphabet) === false
+       ) {
+        return alphabetObject.endOfWord
+      }
 
-        
+      // check if start of word
+      if (
+        alphabetObject.startOfWord && 
+        getCharConditions(combinedDigraphs[index - 1], alphabet) === false
+       ) {
+        return alphabetObject.startOfWord
+      }
+
+      // else...
       return alphabetObject.default
       })
     .join('')
   return result
 }
 
-const getCharConditions = (char, alphabet) => {
+export const getCharConditions = (char, alphabet) => {
   const alphabetObject = alphabet.filter(alphabetChar => alphabetChar.chars.includes(char))[0]
   if (!alphabetObject) return false
   return alphabetObject
