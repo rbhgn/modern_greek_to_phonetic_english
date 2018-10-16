@@ -38,7 +38,11 @@ test('translateInput', () => {
   expect(translateInput('αυ'  ,greekAlphabet)).toBe('af')
   expect(translateInput('γα'  ,greekAlphabet)).toBe('ga')
   expect(translateInput('γ'   ,greekAlphabet)).toBe('g')
-  expect(translateInput('γη'   ,greekAlphabet)).toBe('yee')
+  expect(translateInput('γη'  ,greekAlphabet)).toBe('yee')
+  expect(translateInput('ά'   ,greekAlphabet)).toBe('a')
+  expect(translateInput('ά'   ,greekAlphabet)).toBe('a')
+  expect(translateInput('ΐγγςώ',greekAlphabet)).toBe('eengso')
+
 })
 
 test('getCharConditions', () => {
